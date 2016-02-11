@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_main"
+    tools:context="com.rodrigobezerra.contadorpessoasapp.MainActivity"
+    android:background="#bdbdbd">
+
+    <Button
+        android:layout_width="200px"
+        android:layout_height="200px"
+        android:text="0"
+        android:id="@+id/btHomem"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="#1e88e5" />
+
+    <Button
+        android:layout_width="200px"
+        android:layout_height="200px"
+        android:text="0"
+        android:id="@+id/btMulher"
+        android:layout_alignBottom="@+id/btHomem"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="#d500f9" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Total de Pessoas: 0"
+        android:textSize="50px"
+        android:id="@+id/totalPessoas"
+        android:layout_below="@+id/btReset"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="157dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reiniciar"
+        android:id="@+id/btReset"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="200px"
+        android:layout_height="200px"
+        android:id="@+id/imageView"
+        android:src="@drawable/men"
+        android:layout_above="@+id/btHomem"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="200px"
+        android:layout_height="200px"
+        android:id="@+id/imageView2"
+        android:src="@drawable/women"
+        android:layout_above="@+id/btMulher"
+        android:layout_alignRight="@+id/btMulher"
+        android:layout_alignEnd="@+id/btMulher" />
+</RelativeLayout>
