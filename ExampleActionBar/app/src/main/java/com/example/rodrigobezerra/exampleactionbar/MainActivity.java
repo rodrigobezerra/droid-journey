@@ -8,8 +8,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,9 +23,11 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setTitle("Curso Android M");
         setSupportActionBar(toolbar);
 
+        textView = (TextView) findViewById(R.id.textView2);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         FloatingActionButton fab2 = (FloatingActionButton) findViewById(R.id.fab2);
         FloatingActionButton fab3 = (FloatingActionButton) findViewById(R.id.fab3);
+
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    public void aoClicarNoBotao(View v) {
+        textView.setText("Curso Android Studio!!!");
     }
 
     @Override
