@@ -39,10 +39,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Alerta personalisado baseado em um construtor
         AlertDialog.Builder construtorAlerta;
         construtorAlerta = new AlertDialog.Builder(this);
         construtorAlerta.setTitle("Titulo de alerta");
         construtorAlerta.setMessage("Qual é a sua opção?");
+        construtorAlerta.setIcon(R.drawable.homer);
 
         construtorAlerta.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
             @Override
@@ -52,6 +54,20 @@ public class MainActivity extends AppCompatActivity {
         });
 
         construtorAlerta.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Log.i("LogX", "Clicou no não!!!");
+            }
+        });
+
+        construtorAlerta.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Log.i("LogX", "Clicou no não!!!");
+            }
+        });
+
+        construtorAlerta.setNeutralButton("Tanto Faz", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Log.i("LogX", "Clicou no não!!!");
