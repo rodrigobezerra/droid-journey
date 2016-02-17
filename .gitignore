@@ -1,5 +1,5 @@
 ## Directory-based project format:
-.idea/
+**/.idea/
 
 # MacOSX files
 .DS_Store
