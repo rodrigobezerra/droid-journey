@@ -1,5 +1,6 @@
 package com.example.rodrigobezerra.exampleactionbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,7 +9,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setTitle("Curso Android M");
         setSupportActionBar(toolbar);
 
-        textView = (TextView) findViewById(R.id.textView2);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         FloatingActionButton fab2 = (FloatingActionButton) findViewById(R.id.fab2);
         FloatingActionButton fab3 = (FloatingActionButton) findViewById(R.id.fab3);
@@ -55,7 +54,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void aoClicarNoBotao(View v) {
-        textView.setText("Curso Android Studio!!!");
+        Intent intent = new Intent(getApplicationContext(), SegundaTela.class);
+        intent.putExtra("meuTexto","Curso Android Studio!!!");
+        startActivity(intent);
+
+        // textView.setText("Curso Android Studio!!!");
     }
 
     @Override
