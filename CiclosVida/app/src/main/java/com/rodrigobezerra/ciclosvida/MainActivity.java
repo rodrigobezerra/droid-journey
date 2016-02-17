@@ -12,36 +12,36 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Log.d("meuLog","{EVENTO} Abriu Cena!!!");
+        // Log.d("LogX", "{EVENTO} Abriu Cena!!!");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.d("meuLog","{EVENTO} STOP");
+        Log.d("LogX","EVENTO:STOP");
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.d("meuLog","{EVENTO} TOUCH EVENT");
+        Log.d("LogX","EVENTO:TOUCH EVENT");
         return super.onTouchEvent(event);
     }
 
     @Override
     protected void onStart() {
+        Log.d("LogX", "EVENTO:START");
         super.onStart();
-        Log.d("meuLog", "{EVENTO} START");
     }
 
     @Override
     protected void onPause() {
-        Log.d("meuLog","{EVENTO} PAUSE");
+        Log.d("LogX","EVENTO:PAUSE");
         super.onPause();
     }
 
     @Override
     protected void onResume() {
-        Log.d("meuLog","{EVENTO} RESUME");
+        Log.d("LogX","EVENTO:RESUME");
         super.onResume();
     }
 
@@ -53,8 +53,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onDestroy() {
 
-        Log.d("meuLog","{EVENTO} DESTROY");
+        Log.d("LogX","EVENTO:DESTROY");
         super.onDestroy();
     }
 }
-
