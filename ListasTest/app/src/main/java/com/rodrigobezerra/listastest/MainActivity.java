@@ -12,7 +12,19 @@ public class MainActivity extends AppCompatActivity {
 
     ListView minhaLista;
 
-    private String[] nomes = {"Homer", "Bart", "Maggie", "Margie", "Mr. Burns", "Moe", "Smithers", "Barney", "Ajudante de Papai Noel" };
+    private String[] nomes = {"Homer", "Bart", "Maggie",
+            "Margie", "Mr. Burns", "Moe",
+            "Smithers", "Barney", "Ajudante de Papai Noel"};
+
+    private String[] descricoes = {"Eu sou o Homer",
+            "Eu sou o Bart",
+            "Eu sou o Maggie",
+            "Eu sou o Margie",
+            "Eu sou o Mr. Burns",
+            "Eu sou o Moe",
+            "Eu sou o Smithers",
+            "Eu sou o Barney",
+            "Au au au!!!"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +42,7 @@ public class MainActivity extends AppCompatActivity {
         minhaLista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 String nome = nomes[position];
-
                 Toast.makeText(getApplicationContext(), nome, Toast.LENGTH_SHORT).show();
             }
         });
