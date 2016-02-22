@@ -1,6 +1,7 @@
 package com.rodrigobezerra.listastest;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -32,11 +33,28 @@ public class MeuAdaptadorCustom extends ArrayAdapter{
         row = convertView;
         DataHandler handler;
 
+        if (convertView != null) {
+            LayoutInflater inflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            row = inflater.inflate(R.layout.minha_celula, parent, false);
+
+            handler = new DataHandler();
+            handler.imagemIcone = (ImageView) row.findViewById(R.id.icone);
+            handler.nomePersonagem = (TextView) row.findViewById(R.id.nome);
+            handler.descricaoPersonagem = (TextView) row.findViewById(R.id.descricao);
+
+            row.setTag(handler);
+        } else {
+            handler = (DataHandler) row.getTag();
+        }
+
+        // MeuDataProvider provider;
+
         return super.getView(position, convertView, parent);
     }
 
+    // inner class
     private class DataHandler{
-        ImageView imageIcon;
+        ImageView imagemIcone;
         TextView nomePersonagem;
         TextView descricaoPersonagem;
     }

@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     ListView minhaLista;
 
-    private String[] nomes = {"Homer", "Bart", "Lisa", "Maggie",
+    private String[] listaNomes = {"Homer", "Bart", "Lisa", "Maggie",
             "Margie", "Mr. Burns", "Moe",
             "Smithers", "Abraham", "Ajudante de Papai Noel"};
 
@@ -46,19 +46,20 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> adaptador = new ArrayAdapter<String>(
                 getApplicationContext(),
                 android.R.layout.simple_list_item_1,
-                android.R.id.text1, nomes);
+                android.R.id.text1, listaNomes);
 
-        // minhaLista.setAdapter(adaptador);
+        minhaLista.setAdapter(adaptador);
 
         minhaLista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String nome = nomes[position];
+                String nome = listaNomes[position];
                 Toast.makeText(getApplicationContext(), nome, Toast.LENGTH_SHORT).show();
             }
         });
 
-        MeuAdaptadorCustom adaptador;
+        MeuAdaptadorCustom adaptador1;
+
 
     }
 }
