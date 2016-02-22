@@ -12,9 +12,9 @@ public class MainActivity extends AppCompatActivity {
 
     ListView minhaLista;
 
-    private String[] nomes = {"Homer", "Bart", "Maggie",
+    private String[] nomes = {"Homer", "Bart", "Lisa", "Maggie",
             "Margie", "Mr. Burns", "Moe",
-            "Smithers", "Barney", "Ajudante de Papai Noel"};
+            "Smithers", "Abraham", "Ajudante de Papai Noel"};
 
     private String[] descricoes = {"Eu sou o Homer",
             "Eu sou o Bart",
@@ -23,8 +23,19 @@ public class MainActivity extends AppCompatActivity {
             "Eu sou o Mr. Burns",
             "Eu sou o Moe",
             "Eu sou o Smithers",
-            "Eu sou o Barney",
+            "Eu sou o Abraham",
             "Au au au!!!"};
+
+    int[] listaIcones = {R.drawable.homersimpson,
+            R.drawable.bartsimpson,
+            R.drawable.lisasimpson,
+            R.drawable.maggiesimpson,
+            R.drawable.margesimpson,
+            R.drawable.mrburns,
+            R.drawable.moe,
+            R.drawable.smithers,
+            R.drawable.abrahamsimpson,
+            R.drawable.bartsanta};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 android.R.layout.simple_list_item_1,
                 android.R.id.text1, nomes);
 
-        minhaLista.setAdapter(adaptador);
+        // minhaLista.setAdapter(adaptador);
 
         minhaLista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -46,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), nome, Toast.LENGTH_SHORT).show();
             }
         });
+
+        MeuAdaptadorCustom adaptador;
 
     }
 }
