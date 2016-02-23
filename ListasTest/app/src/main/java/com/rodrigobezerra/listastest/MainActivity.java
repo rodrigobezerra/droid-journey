@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 android.R.layout.simple_list_item_1,
                 android.R.id.text1, listaNomes);
 
-        // minhaLista.setAdapter(adaptador);
+        minhaLista.setAdapter(meuAdaptador);
 
         minhaLista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -60,15 +60,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
         MeuAdaptadorCustom adaptador;
-
-        int i = 0;
         adaptador = new MeuAdaptadorCustom(getApplicationContext(),R.layout.minha_celula);
+        int i = 0;
 
         for (String nome: listaNomes) {
             MeuDataProvider dataProvider = new MeuDataProvider(listaIcones[i], nome, listaDescricoes[i]);
             adaptador.add(dataProvider);
             i++;
-;        }
+        }
         minhaLista.setAdapter(adaptador);
     }
 }
