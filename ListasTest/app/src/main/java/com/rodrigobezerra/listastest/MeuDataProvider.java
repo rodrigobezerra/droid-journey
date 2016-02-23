@@ -9,6 +9,12 @@ public class MeuDataProvider {
     private String nome;
     private String descricao;
 
+    public MeuDataProvider(int icone, String nome, String descricao) {
+        this.icone = icone;
+        this.nome = nome;
+        this.descricao = descricao;
+    }
+
     public int getIcone() {
         return icone;
     }

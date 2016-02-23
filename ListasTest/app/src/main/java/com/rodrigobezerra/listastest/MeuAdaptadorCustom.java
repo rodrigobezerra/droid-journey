@@ -47,7 +47,12 @@ public class MeuAdaptadorCustom extends ArrayAdapter{
             handler = (DataHandler) row.getTag();
         }
 
-        // MeuDataProvider provider;
+        // Filling in the dataProdider object
+        MeuDataProvider provider;
+        provider = (MeuDataProvider) this.getItem(position);
+        handler.imagemIcone.setImageResource(provider.getIcone());
+        handler.nomePersonagem.setText(provider.getNome());
+        handler.descricaoPersonagem.setText(provider.getDescricao());
 
         return super.getView(position, convertView, parent);
     }

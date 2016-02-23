@@ -16,8 +16,9 @@ public class MainActivity extends AppCompatActivity {
             "Margie", "Mr. Burns", "Moe",
             "Smithers", "Abraham", "Ajudante de Papai Noel"};
 
-    private String[] descricoes = {"Eu sou o Homer",
+    private String[] listaDescricoes = {"Eu sou o Homer",
             "Eu sou o Bart",
+            "Eu sou o Lisa",
             "Eu sou o Maggie",
             "Eu sou o Margie",
             "Eu sou o Mr. Burns",
@@ -43,12 +44,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         minhaLista = (ListView) findViewById(R.id.listView);
-        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(
+        ArrayAdapter<String> meuAdaptador = new ArrayAdapter<String>(
                 getApplicationContext(),
                 android.R.layout.simple_list_item_1,
                 android.R.id.text1, listaNomes);
 
-        minhaLista.setAdapter(adaptador);
+        // minhaLista.setAdapter(adaptador);
 
         minhaLista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -58,8 +59,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        MeuAdaptadorCustom adaptador1;
+        MeuAdaptadorCustom adaptador;
 
+        int i = 0;
+        adaptador = new MeuAdaptadorCustom(getApplicationContext(),R.layout.minha_celula);
 
+        for (String nome: listaNomes) {
+            MeuDataProvider dataProvider = new MeuDataProvider(listaIcones[i], nome, listaDescricoes[i]);
+            adaptador.add(dataProvider);
+            i++;
+;        }
+        minhaLista.setAdapter(adaptador);
     }
 }
