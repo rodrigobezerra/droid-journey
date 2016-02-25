@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.moe,
             R.drawable.smithers,
             R.drawable.abrahamsimpson,
-            R.drawable.bartsanta};
+            R.drawable.santas};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
