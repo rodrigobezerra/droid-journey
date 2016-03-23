@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Bitmap bitmap) {
 
-            if(bitmap != null) {
+            if (bitmap != null) {
                 imagem.setImageBitmap(bitmap);
                 alerta.hide();
             }
