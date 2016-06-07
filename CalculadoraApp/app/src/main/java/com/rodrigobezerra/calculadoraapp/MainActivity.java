@@ -2,6 +2,7 @@ package com.rodrigobezerra.calculadoraapp;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -81,8 +82,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getKeyboard(String str){
+        Log.d("LogX", "Valor1: " + campoTexto.getText().toString());
         String scrCurrent = campoTexto.getText().toString();
-        scrCurrent += str;
+        Log.d("LogX", "Valor2: " + str);
+        if (!campoTexto.getText().toString().equals("0")) {
+            scrCurrent += str;
+        } else {
+            if (campoTexto.getText().toString().equals("0") && str.equals(".")) {
+                scrCurrent += str;
+            } else {
+                scrCurrent = str;
+            }
+        }
+
         campoTexto.setText(scrCurrent);
     }
 }
