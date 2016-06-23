@@ -34,21 +34,24 @@
             android:layout_height="wrap_content"
             android:text="New RadioButton"
             android:id="@+id/opcaoA"
-            android:textColor="@color/background_floating_material_light" />
+            android:textColor="@color/background_floating_material_light"
+            android:onClick="liberarOK"/>
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New RadioButton"
             android:id="@+id/opcaoB"
-            android:textColor="@color/background_floating_material_light" />
+            android:textColor="@color/background_floating_material_light"
+            android:onClick="liberarOK" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New RadioButton"
             android:id="@+id/opcaoC"
-            android:textColor="@color/background_floating_material_light" />
+            android:textColor="@color/background_floating_material_light"
+            android:onClick="liberarOK" />
     </RadioGroup>
 
     <Button
@@ -59,6 +62,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:onClick="clicaOk"/>
+        android:onClick="atualizaPerguntas"/>
 
 </RelativeLayout>
