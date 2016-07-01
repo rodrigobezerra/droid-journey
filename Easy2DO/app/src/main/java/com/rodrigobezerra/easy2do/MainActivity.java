@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -36,8 +37,7 @@ public class MainActivity extends Activity {
         meuBotao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
+                adicionaNovaTarefa(meuTexto.getText().toString());
             }
         });
 
@@ -49,13 +49,6 @@ public class MainActivity extends Activity {
             bd = openOrCreateDatabase("TODOList", MODE_PRIVATE, null);
             bd.execSQL("CREATE TABLE IF NOT EXISTS tarefas" +
                     "(id INTEGER PRIMARY KEY AUTOINCREMENT, tarefa VARCHAR)");
-
-            // criando um novo registro de tarefa
-            String novaTarefa = meuTexto.getText().toString();
-            if (!novaTarefa.trim().equals(""))
-                bd.execSQL("INSERT INTO tarefas(tarefa) VALUES ('"+ novaTarefa +"')");
-            else
-                Log.d("logX","A nova tarefa está vazia!");
 
             // Listando os dados
             Cursor cursor = bd.rawQuery("SELECT * FROM tarefas", null);
@@ -75,8 +68,22 @@ public class MainActivity extends Activity {
         }
     }
 
-    private void adcTarefa() {
+    private void adicionaNovaTarefa(String novaTarefa) {
+        try {
+           if(novaTarefa.trim().equals("")){
+               Log.d("logX","Tarefa vazia!");
+               Toast.makeText(MainActivity.this, "Informe uma tarefa!", Toast.LENGTH_SHORT).show();
+           } else {
+               Toast.makeText(MainActivity.this, "Tarefa " + novaTarefa + " criada!", Toast.LENGTH_SHORT).show();
+               meuTexto.setText("");
+               bd.execSQL("INSERT INTO tarefas(tarefa) VALUES ('"+ novaTarefa +"')");
+               carregaTarefas();
+               Log.d("logX","Tarefa" + novaTarefa + " criada!");
+           }
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
