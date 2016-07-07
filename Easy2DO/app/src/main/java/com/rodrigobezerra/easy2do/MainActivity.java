@@ -12,10 +12,13 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MainActivity extends Activity {
 
@@ -24,6 +27,10 @@ public class MainActivity extends Activity {
     private Button meuBotao;
 
     private SQLiteDatabase bd;
+
+    private ArrayAdapter<String> itensAdaptador;
+    private ArrayList<Integer> ids;
+    private ArrayList<String> itens;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +53,7 @@ public class MainActivity extends Activity {
     private void carregaTarefas() {
         try {
             // criacao da tabela 'tarefas'
-            bd = openOrCreateDatabase("TODOList", MODE_PRIVATE, null);
+            bd = openOrCreateDatabase("E2DO", MODE_PRIVATE, null);
             bd.execSQL("CREATE TABLE IF NOT EXISTS tarefas" +
                     "(id INTEGER PRIMARY KEY AUTOINCREMENT, tarefa VARCHAR)");
 
@@ -56,10 +63,21 @@ public class MainActivity extends Activity {
             int indiceColunaID = cursor.getColumnIndex("id");
             int indiceColunaTarefa = cursor.getColumnIndex("tarefa");
 
+            itens = new ArrayList<String>();
+            ids = new ArrayList<Integer>();
+
+            itensAdaptador = new ArrayAdapter<String>(getApplicationContext(),
+                    android.R.layout.simple_list_item_2,
+                    android.R.id.text1,
+                    itens);
+
+            minhaLista.setAdapter(itensAdaptador);
+
             cursor.moveToFirst();
             while (cursor != null) {
-                Log.i("logX", "ID: "+ cursor.getString(indiceColunaID) +
-                        "| Tarefa: " + cursor.getString(indiceColunaTarefa));
+                Log.i("logX", "ID: "+ cursor.getString(indiceColunaID) + "| Tarefa: " + cursor.getString(indiceColunaTarefa));
+                itens.add(cursor.getString(indiceColunaTarefa));
+                ids.add(Integer.parseInt(cursor.getString(indiceColunaID)));
                 cursor.moveToNext();
             }
 
