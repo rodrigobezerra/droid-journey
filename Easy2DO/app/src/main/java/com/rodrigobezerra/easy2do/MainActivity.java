@@ -52,11 +52,6 @@ public class MainActivity extends Activity {
 
     private void carregaTarefas() {
         try {
-            // criacao da tabela 'tarefas'
-            bd = openOrCreateDatabase("E2DO", MODE_PRIVATE, null);
-            bd.execSQL("CREATE TABLE IF NOT EXISTS tarefas" +
-                    "(id INTEGER PRIMARY KEY AUTOINCREMENT, tarefa VARCHAR)");
-
             // Listando os dados
             Cursor cursor = bd.rawQuery("SELECT * FROM tarefas", null);
 
@@ -88,15 +83,27 @@ public class MainActivity extends Activity {
 
     private void adicionaNovaTarefa(String novaTarefa) {
         try {
-           if(novaTarefa.trim().equals("")){
-               Log.d("logX","Tarefa vazia!");
+           if (novaTarefa.trim().equals("")){
+               Log.w("logX","Tarefa vazia!");
                Toast.makeText(MainActivity.this, "Informe uma tarefa!", Toast.LENGTH_SHORT).show();
            } else {
                Toast.makeText(MainActivity.this, "Tarefa " + novaTarefa + " criada!", Toast.LENGTH_SHORT).show();
                meuTexto.setText("");
+
+               if (bd == null) {
+                   bd = openOrCreateDatabase("TODOList", MODE_PRIVATE, null);
+                   bd.execSQL("CREATE TABLE IF NOT EXISTS tarefas" +
+                           "(id INTEGER PRIMARY KEY AUTOINCREMENT, tarefa VARCHAR)");
+               } else {
+                   if (!bd.isOpen()){
+                       // criacao da tabela 'tarefas'
+                       bd = openOrCreateDatabase("TODOList", MODE_PRIVATE, null);
+                   }
+               }
+
                bd.execSQL("INSERT INTO tarefas(tarefa) VALUES ('"+ novaTarefa +"')");
                carregaTarefas();
-               Log.d("logX","Tarefa" + novaTarefa + " criada!");
+               Log.d("logX","Tarefa " + novaTarefa + " criada!");
            }
 
         } catch (Exception e) {
