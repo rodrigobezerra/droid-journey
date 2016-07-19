@@ -1,17 +1,20 @@
 package com.rodrigobezerra.easy2do;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,6 +44,16 @@ public class MainActivity extends Activity {
         minhaLista = (ListView) findViewById(R.id.listView);
         meuBotao = (Button) findViewById(R.id.button);
 
+        carregaTarefas();
+
+        minhaLista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                apagarTarefa(ids.get(position));
+                return false;
+            }
+        });
+
         meuBotao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +66,7 @@ public class MainActivity extends Activity {
     private void carregaTarefas() {
         try {
             // Listando os dados
-            Cursor cursor = bd.rawQuery("SELECT * FROM tarefas", null);
+            Cursor cursor = bd.rawQuery("SELECT * FROM tarefas ORDER BY id DESC", null);
 
             int indiceColunaID = cursor.getColumnIndex("id");
             int indiceColunaTarefa = cursor.getColumnIndex("tarefa");
@@ -112,7 +125,29 @@ public class MainActivity extends Activity {
 
     }
 
-    private void apagarTarefa() {
+    private void apagarTarefa(Integer id) {
 
+        try {
+            bd.execSQL("DELETE FROM tarefas WHERE id=" + id);
+            Toast.makeText(MainActivity.this, "Tarefa removida!", Toast.LENGTH_SHORT).show();
+            carregaTarefas(); //recarregar lista de tarefas;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void alertaApagaTarefa(final Integer idSelecionado) {
+        String tarefaSelecionada = itens.get(idSelecionado);
+        final Integer numeroId = idSelecionado;
+        new AlertDialog.Builder(getApplicationContext()).
+                setTitle("Aviso!").
+                setMessage("Deseja remover a tarefa selecionada?").
+                setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        apagarTarefa(ids.get(numeroId));
+                    }
+                });
     }
 }
